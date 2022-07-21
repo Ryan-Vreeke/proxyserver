@@ -9,22 +9,48 @@
 #include <thread>
 #include <unistd.h>
 #include <vector>
+#include <mutex>
 
 using namespace std;
-void recvLoop(vector<cSock *> innerClients)
+
+cSock clients[50];
+std::mutex myMutex;
+
+void recvLoop(int innerClient)
 {
   while (true)
   {
-    for (auto c : innerClients)
+    // clear buffer
+    clients[innerClient].clearBuffer();
+    // wait for message
+    int bytesRecv = recv(innerClient, clients[innerClient].buf, 4096, 0);
+    if (bytesRecv == -1)
     {
-      cout << c->clientSocket << "; " << c->ip << endl;
+      cout << "there was a connection issue!";
+      break;
+    }
+
+    if (bytesRecv == 0)
+    {
+      cout << "The Client disconnected" << endl;
+    }
+
+    // display message
+    cout << innerClient << ">" << string(clients[innerClient].buf, 0, bytesRecv) << endl;
+    // send(send to this socket, from this buf, of this length, flag)
+    std::lock_guard<std::mutex> guard(myMutex);
+    for (auto c : clients)
+    {
+      if (c.clientSocket != -1)
+      {
+        send(c.clientSocket, clients[innerClient].buf, bytesRecv + 1, 0);
+      }
     }
   }
 }
 
 int main(int argc, char *argv[])
 {
-  vector<cSock *> clients;
   int listening = socket(AF_INET, SOCK_STREAM, 0);
   if (listening == -1)
   {
@@ -49,7 +75,7 @@ int main(int argc, char *argv[])
     cout << "Can't LIsten!";
     return -3;
   }
-  
+
   cout << "Listening..." << endl;
 
   while (true)
@@ -60,9 +86,9 @@ int main(int argc, char *argv[])
     char svc[NI_MAXSERV];
 
     int clientSocket(accept(listening, (sockaddr *)&client, &clientSize));
-    cSock *newClient = new cSock(clientSocket);
+    cSock newClient(clientSocket);
 
-    if (newClient->clientSocket == -1)
+    if (newClient.clientSocket == -1)
     {
       cout << "Problem with client connecting!";
       return -4;
@@ -80,12 +106,13 @@ int main(int argc, char *argv[])
     else
     {
       inet_ntop(AF_INET, &client.sin_addr, host, NI_MAXHOST);
-      newClient->setIP(host);
+      newClient.setIP(host);
       // newClient.setPort(ntohs(client.sin_port));
     }
-    cout << newClient->ip << " connected on " << endl;
-    clients.push_back(newClient);
-    thread *th1 = new thread(recvLoop, clients);
+
+    cout << newClient.ip << " Connected" << endl;
+    clients[newClient.clientSocket] = newClient;
+    new thread(recvLoop, newClient.clientSocket);
   }
 
   return 0;

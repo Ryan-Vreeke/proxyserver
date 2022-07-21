@@ -1,4 +1,4 @@
-make test --dry-run --keep-going --print-directory
+make test --dry-run --always-make --keep-going --print-directory
 make: Entering directory '/home/ryan/Documents/Code/Active Projects/ProxyServer'
 rm -rf *.o *.a multiserver test server Client servertest
 g++ -std=c++11 -Wall -g -c multiserver.cpp

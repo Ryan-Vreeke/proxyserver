@@ -19,6 +19,7 @@ public:
   char buf[4096];
 
   cSock(int clientSocket);
+  cSock();
   void setIP(char ip[]);
   void clearBuffer();
 };
