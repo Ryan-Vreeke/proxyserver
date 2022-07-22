@@ -10,6 +10,9 @@
 #include <unistd.h>
 #include <vector>
 #include <mutex>
+#include <regex>
+#include <boost/regex.hpp>
+#include <boost/algorithm/string/regex.hpp>
 
 using namespace std;
 
@@ -27,16 +30,29 @@ void recvLoop(int innerClient)
     if (bytesRecv == -1)
     {
       cout << "there was a connection issue!";
+      close(innerClient);
       break;
     }
 
     if (bytesRecv == 0)
     {
       cout << "The Client disconnected" << endl;
+      close(innerClient);
+      break;
     }
 
     // display message
-    cout << innerClient << ">" << string(clients[innerClient].buf, 0, bytesRecv) << endl;
+    string req = string(clients[innerClient].buf, 0, bytesRecv);
+    vector<string> tokens;
+    split_regex(tokens, req, boost::regex("(\r\n)+"));
+
+    for (auto t : tokens)
+    {
+      cout << t << endl;
+    }
+
+    cout << innerClient << ">" << req << endl;
+
     // send(send to this socket, from this buf, of this length, flag)
     std::lock_guard<std::mutex> guard(myMutex);
     for (auto c : clients)
@@ -47,10 +63,21 @@ void recvLoop(int innerClient)
       }
     }
   }
+
+  std::lock_guard<std::mutex> guard(myMutex);
+  cSock tempC;
+  clients[innerClient] = tempC;
 }
 
-int main(int argc, char *argv[])
+int main(int argc, char **argv)
 {
+  if (argc != 2)
+  {
+    cerr << "Arguments missing! Port Required! proxyserver [port]" << endl;
+    return -1;
+  }
+  int port = atoi(argv[1]);
+
   int listening = socket(AF_INET, SOCK_STREAM, 0);
   if (listening == -1)
   {
@@ -61,7 +88,7 @@ int main(int argc, char *argv[])
   // Bind the socket to a IP / port
   sockaddr_in hint;
   hint.sin_family = AF_INET;
-  hint.sin_port = htons(5000);
+  hint.sin_port = htons(port);
   inet_pton(AF_INET, "0.0.0.0", &hint.sin_addr);
 
   if (bind(listening, (sockaddr *)&hint, sizeof(hint)) == -1)
@@ -72,11 +99,11 @@ int main(int argc, char *argv[])
   // mark the socket for listening in
   if (listen(listening, SOMAXCONN) == -1)
   {
-    cout << "Can't LIsten!";
+    cout << "Can't Listen!";
     return -3;
   }
 
-  cout << "Listening..." << endl;
+  cout << "Listening on port " << port << endl;
 
   while (true)
   {
@@ -111,6 +138,7 @@ int main(int argc, char *argv[])
     }
 
     cout << newClient.ip << " Connected" << endl;
+    std::lock_guard<std::mutex> guard(myMutex);
     clients[newClient.clientSocket] = newClient;
     new thread(recvLoop, newClient.clientSocket);
   }

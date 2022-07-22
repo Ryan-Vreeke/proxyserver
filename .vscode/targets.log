@@ -8,7 +8,7 @@ make: *** No rule to make target 'all'.  Stop.
 # This is free software: you are free to change and redistribute it.
 # There is NO WARRANTY, to the extent permitted by law.
 
-# Make data base, printed on Thu Jul 21 09:00:14 2022
+# Make data base, printed on Fri Jul 22 10:20:38 2022
 
 # Variables
 
@@ -85,13 +85,13 @@ MAKEFILE_LIST := Makefile
 # automatic
 @F = $(notdir $@)
 # environment
-VSCODE_PID = 13053
+VSCODE_PID = 2415
 # environment
 XDG_SESSION_TYPE = x11
 # automatic
 ?D = $(patsubst %/,%,$(dir $?))
 # environment
-SESSION_MANAGER = local/archG14-pc:@/tmp/.ICE-unix/1002,unix/archG14-pc:/tmp/.ICE-unix/1002
+SESSION_MANAGER = local/archG14-pc:@/tmp/.ICE-unix/996,unix/archG14-pc:/tmp/.ICE-unix/996
 # automatic
 *F = $(notdir $*)
 # environment
@@ -102,6 +102,8 @@ DBUS_SESSION_BUS_ADDRESS = unix:path=/run/user/1000/bus
 <D = $(patsubst %/,%,$(dir $<))
 # environment
 VSCODE_NLS_CONFIG = {"locale":"en-us","availableLanguages":{},"_languagePackSupport":true}
+# makefile (from 'Makefile', line 8)
+INCLUDE = ./boost_1_79_0
 # default
 MAKE_HOST := x86_64-pc-linux-gnu
 # makefile
@@ -127,7 +129,7 @@ MOTD_SHOWN = pam
 # environment
 KCRASH_AUTO_RESTARTED = 1
 # environment
-INVOCATION_ID = d76e7aa392cc4f76871ca2a28151a16d
+INVOCATION_ID = bce4ab3e04a0468783d30c5fddac6b08
 # automatic
 ?F = $(notdir $?)
 # environment
@@ -153,7 +155,7 @@ XDG_VTNR = 1
 # makefile
 .DEFAULT_GOAL := multiserver.o
 # environment
-SYSTEMD_EXEC_PID = 1217
+SYSTEMD_EXEC_PID = 1176
 # environment
 DISPLAY = :0
 # environment
@@ -165,7 +167,7 @@ MAKE_VERSION := 4.3
 # environment
 KDE_SESSION_UID = 1000
 # environment
-MANAGERPID = 927
+MANAGERPID = 920
 # environment
 _ = /usr/bin/make
 # environment
@@ -173,7 +175,7 @@ XDG_RUNTIME_DIR = /run/user/1000
 # makefile (from 'Makefile', line 7)
 CFLAGS = -Wall
 # environment
-JOURNAL_STREAM = 8:28648
+JOURNAL_STREAM = 8:30468
 # environment
 XDG_SESSION_CLASS = user
 # environment
@@ -213,7 +215,7 @@ KDE_FULL_SESSION = true
 # environment
 DOTNET_ROOT = /usr/share/dotnet
 # variable set hash-table stats:
-# Load=100/1024=10%, Rehash=0, Collisions=2/130=2%
+# Load=101/1024=10%, Rehash=0, Collisions=2/131=2%
 
 # Pattern-specific Variable Values
 
@@ -234,7 +236,7 @@ DOTNET_ROOT = /usr/share/dotnet
 # Not a target:
 Makefile:
 #  Implicit rule search has been done.
-#  Last modified 2022-07-21 07:35:25.485802069
+#  Last modified 2022-07-22 10:20:36.036870832
 #  File has been updated.
 #  Successfully updated.
 
@@ -242,21 +244,21 @@ multiserver.o: multiserver.cpp
 #  Implicit rule search has not been done.
 #  Modification time never checked.
 #  File has not been updated.
-#  recipe to execute (from 'Makefile', line 10):
-	$(CC) $(CFLAGS) -g -c multiserver.cpp
+#  recipe to execute (from 'Makefile', line 11):
+	$(CC) $(CFLAGS) -I $(INCLUDE) -g -c multiserver.cpp
 
 clean:
 #  Implicit rule search has not been done.
 #  Modification time never checked.
 #  File has not been updated.
-#  recipe to execute (from 'Makefile', line 22):
+#  recipe to execute (from 'Makefile', line 23):
 	rm -rf *.o *.a multiserver test server Client servertest
 
 cSock.o: cSock.cpp cSock.h
 #  Implicit rule search has not been done.
 #  Modification time never checked.
 #  File has not been updated.
-#  recipe to execute (from 'Makefile', line 13):
+#  recipe to execute (from 'Makefile', line 14):
 	$(CC) $(CFLAGS) -c cSock.cpp
 
 # Not a target:
@@ -282,7 +284,7 @@ run: multiserver
 #  Implicit rule search has not been done.
 #  Modification time never checked.
 #  File has not been updated.
-#  recipe to execute (from 'Makefile', line 19):
+#  recipe to execute (from 'Makefile', line 20):
 	./multiserver
 
 # Not a target:
@@ -292,11 +294,10 @@ cSock.h:
 #  File has not been updated.
 
 test: clean multiserver.o cSock.o
- 
 #  Implicit rule search has not been done.
 #  Modification time never checked.
 #  File has not been updated.
-#  recipe to execute (from 'Makefile', line 16):
+#  recipe to execute (from 'Makefile', line 17):
 	$(CC) $(CFLAGS) -o test multiserver.o cSock.o
 
 # Not a target:
@@ -319,12 +320,13 @@ multiserver:
 
 # No general ('VPATH' variable) search path.
 
-# strcache buffers: 1 (0) / strings = 23 / storage = 202 B / avg = 8 B
-# current buf: size = 8162 B / used = 202 B / count = 23 / avg = 8 B
+ 
+# strcache buffers: 1 (0) / strings = 23 / storage = 208 B / avg = 9 B
+# current buf: size = 8162 B / used = 208 B / count = 23 / avg = 9 B
 
 # strcache performance: lookups = 41 / hit rate = 43%
 # hash-table stats:
 # Load=23/8192=0%, Rehash=0, Collisions=0/41=0%
-# Finished Make data base on Thu Jul 21 09:00:14 2022
+# Finished Make data base on Fri Jul 22 10:20:38 2022
 
  
