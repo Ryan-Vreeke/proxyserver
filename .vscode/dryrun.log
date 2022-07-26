@@ -1,8 +1,8 @@
-make test --dry-run --keep-going --print-directory
+make test --dry-run --always-make --keep-going --print-directory
 make: Entering directory '/home/ryan/Documents/Code/Active Projects/ProxyServer'
 rm -rf *.o *.a multiserver test server Client servertest
- 
 g++ -std=c++11 -Wall -I ./boost_1_79_0 -g -c multiserver.cpp
-g++ -std=c++11 -Wall -o test multiserver.o cSock.o
+g++ -std=c++11 -Wall -c cSock.cpp
+g++ -std=c++11 -Wall -o test multiserver.o cSock.o -lssl -lcrypto
 make: Leaving directory '/home/ryan/Documents/Code/Active Projects/ProxyServer'
  

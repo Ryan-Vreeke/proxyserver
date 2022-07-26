@@ -14,7 +14,7 @@ cSock.o: cSock.cpp cSock.h
 	$(CC) $(CFLAGS) -c cSock.cpp
 
 test: clean multiserver.o cSock.o
-	$(CC) $(CFLAGS) -o test multiserver.o cSock.o
+	$(CC) $(CFLAGS) -o test multiserver.o cSock.o -lssl -lcrypto
 
 run: multiserver
 	./multiserver

@@ -8,7 +8,7 @@ make: *** No rule to make target 'all'.  Stop.
 # This is free software: you are free to change and redistribute it.
 # There is NO WARRANTY, to the extent permitted by law.
 
-# Make data base, printed on Fri Jul 22 10:20:38 2022
+# Make data base, printed on Mon Jul 25 17:09:16 2022
 
 # Variables
 
@@ -85,13 +85,13 @@ MAKEFILE_LIST := Makefile
 # automatic
 @F = $(notdir $@)
 # environment
-VSCODE_PID = 2415
+VSCODE_PID = 4231
 # environment
 XDG_SESSION_TYPE = x11
 # automatic
 ?D = $(patsubst %/,%,$(dir $?))
 # environment
-SESSION_MANAGER = local/archG14-pc:@/tmp/.ICE-unix/996,unix/archG14-pc:/tmp/.ICE-unix/996
+SESSION_MANAGER = local/archG14-pc:@/tmp/.ICE-unix/959,unix/archG14-pc:/tmp/.ICE-unix/959
 # automatic
 *F = $(notdir $*)
 # environment
@@ -127,9 +127,7 @@ MOTD_SHOWN = pam
 # automatic
 ^F = $(notdir $^)
 # environment
-KCRASH_AUTO_RESTARTED = 1
-# environment
-INVOCATION_ID = bce4ab3e04a0468783d30c5fddac6b08
+INVOCATION_ID = 9335696e2dea4915940ff94b9b4a16b0
 # automatic
 ?F = $(notdir $?)
 # environment
@@ -155,7 +153,7 @@ XDG_VTNR = 1
 # makefile
 .DEFAULT_GOAL := multiserver.o
 # environment
-SYSTEMD_EXEC_PID = 1176
+SYSTEMD_EXEC_PID = 1188
 # environment
 DISPLAY = :0
 # environment
@@ -167,7 +165,7 @@ MAKE_VERSION := 4.3
 # environment
 KDE_SESSION_UID = 1000
 # environment
-MANAGERPID = 920
+MANAGERPID = 884
 # environment
 _ = /usr/bin/make
 # environment
@@ -175,7 +173,7 @@ XDG_RUNTIME_DIR = /run/user/1000
 # makefile (from 'Makefile', line 7)
 CFLAGS = -Wall
 # environment
-JOURNAL_STREAM = 8:30468
+JOURNAL_STREAM = 8:17780
 # environment
 XDG_SESSION_CLASS = user
 # environment
@@ -215,7 +213,7 @@ KDE_FULL_SESSION = true
 # environment
 DOTNET_ROOT = /usr/share/dotnet
 # variable set hash-table stats:
-# Load=101/1024=10%, Rehash=0, Collisions=2/131=2%
+# Load=100/1024=10%, Rehash=0, Collisions=2/130=2%
 
 # Pattern-specific Variable Values
 
@@ -223,9 +221,9 @@ DOTNET_ROOT = /usr/share/dotnet
 
 # Directories
 
-# . (device 66307, inode 12592516): 15 files, no impossibilities.
+# . (device 66307, inode 12592516): 16 files, no impossibilities.
 
-# 15 files, no impossibilities in 1 directories.
+# 16 files, no impossibilities in 1 directories.
 
 # Implicit Rules
 
@@ -236,7 +234,7 @@ DOTNET_ROOT = /usr/share/dotnet
 # Not a target:
 Makefile:
 #  Implicit rule search has been done.
-#  Last modified 2022-07-22 10:20:36.036870832
+#  Last modified 2022-07-25 12:46:55.156477898
 #  File has been updated.
 #  Successfully updated.
 
@@ -291,6 +289,7 @@ run: multiserver
 cSock.h:
 #  Implicit rule search has not been done.
 #  Modification time never checked.
+ 
 #  File has not been updated.
 
 test: clean multiserver.o cSock.o
@@ -298,7 +297,7 @@ test: clean multiserver.o cSock.o
 #  Modification time never checked.
 #  File has not been updated.
 #  recipe to execute (from 'Makefile', line 17):
-	$(CC) $(CFLAGS) -o test multiserver.o cSock.o
+	$(CC) $(CFLAGS) -o test multiserver.o cSock.o -lssl -lcrypto
 
 # Not a target:
 cSock.cpp:
@@ -320,13 +319,12 @@ multiserver:
 
 # No general ('VPATH' variable) search path.
 
- 
-# strcache buffers: 1 (0) / strings = 23 / storage = 208 B / avg = 9 B
-# current buf: size = 8162 B / used = 208 B / count = 23 / avg = 9 B
+# strcache buffers: 1 (0) / strings = 24 / storage = 221 B / avg = 9 B
+# current buf: size = 8162 B / used = 221 B / count = 24 / avg = 9 B
 
-# strcache performance: lookups = 41 / hit rate = 43%
+# strcache performance: lookups = 42 / hit rate = 42%
 # hash-table stats:
-# Load=23/8192=0%, Rehash=0, Collisions=0/41=0%
-# Finished Make data base on Fri Jul 22 10:20:38 2022
+# Load=24/8192=0%, Rehash=0, Collisions=0/42=0%
+# Finished Make data base on Mon Jul 25 17:09:16 2022
 
  
